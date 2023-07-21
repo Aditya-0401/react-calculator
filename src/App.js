@@ -5,23 +5,39 @@ const App = () => {
 
   const [result,setResult] = useState("");
 
-  const handleClick = (e)=>{
-    setResult(result.concat(e.target.name));
+  const handleClick = (event)=>{
+    event.stopPropagation();
+    console.log("button is clicked!");
+    setResult(result.concat(event.target.name));
   }
-  const handleClear = (e)=>{
+
+  const handleClear = (event)=>{
+    event.stopPropagation();
+    console.log("clear button is clicked!");
     setResult("");
   }
-  const handleBackSpace = (e)=>{
+  
+  const handleBackSpace = (event)=>{
+    event.stopPropagation();
+    console.log("backspace button is clicked!");
     setResult(result.slice(0,result.length-1));
   }
 
-  const handleCalculate = ()=>{
+  const handleCalculate = (event)=>{
+    event.stopPropagation();
+    console.log("calculate button is clicked!");
     setResult(eval(result).toString());
+  }
+
+  const handleWrapper = (event)=>{
+    event.stopPropagation();
+    console.log("wrapper is clicked!");
+    // setResult(eval(result).toString());
   }
 
   return (
     <>
-    <div className="container mx-auto flex flex-col items-center">
+    <div className="container mx-auto flex flex-col items-center" onClick={handleWrapper}>
         <div className="row">
             <input className="input" type="text" value={result}/>
         </div>
